@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <Router>
+        <Router basename="/zephyr-front-page">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/resume" element={<ResumePage />} />
