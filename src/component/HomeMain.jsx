@@ -19,7 +19,7 @@ export default function HomeMain() {
         sx={{
           width: '70%',
           height: '100vh',
-          backgroundImage: `url('/avatar.jpg')`,
+          backgroundImage: `url('${process.env.PUBLIC_URL}/zephyr-front-page/avatar.JPG')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0% 100%)',
@@ -42,7 +42,7 @@ export default function HomeMain() {
       >
         <Box
           component="img"
-          src="/avatar.JPG"
+          src={`${process.env.PUBLIC_URL}/zephyr-front-page/avatar.JPG`}
           alt="Zephyr Zhou"
           sx={{
             width: 200, // 宽度一定要有
