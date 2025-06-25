@@ -6,9 +6,13 @@ export default function ResumePage() {
       <Typography variant="h3" gutterBottom>
         Resume
       </Typography>
-      <Typography>
-        (You can embed your PDF here or link to a downloadable resume.)
-      </Typography>
+      <iframe
+        src="/zephyr-front-page/resume.pdf"
+        width="100%"
+        height="800px"
+        style={{ border: 'none' }}
+        title="My Resume"
+      />
     </Box>
   );
 }

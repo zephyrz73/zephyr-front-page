@@ -12,7 +12,7 @@ const events = [
   {
     title: 'University of Washington, Seattle',
     start: new Date('2018-10-01'),
-    end: new Date('2021-06-01'),
+    end: new Date('2021-07-01'),
     color: '#bdbdbd',
     type: 'education',
   },
