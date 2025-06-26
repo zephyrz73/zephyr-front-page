@@ -19,6 +19,7 @@ export default function HomeMain() {
         py: { xs: 4, md: 0 },
         gap: { xs: 4, md: 8 },
         paddingRight: { xs: 0, md: '100px' },
+        paddingBottom: { xs: '80px' },
       }}
     >
       <motion.div
