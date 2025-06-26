@@ -79,7 +79,7 @@ export default function CompanySection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Typography variant="h4" gutterBottom sx={{ marginBottom: '30px' }}>
+        <Typography variant="h2" gutterBottom sx={{ marginBottom: '30px' }}>
           Company Overview
         </Typography>
       </motion.div>

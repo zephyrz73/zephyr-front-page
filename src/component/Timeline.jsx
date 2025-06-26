@@ -88,7 +88,7 @@ export default function TimeLine(props) {
     <Box sx={{ width: '100vw' }}>
       <Box sx={{ paddingTop: '90px' }}>
         <Box display="flex" justifyContent="center" mb={4}>
-          <Typography variant="h5">My Journey</Typography>
+          <Typography variant="h2">My Journey</Typography>
         </Box>
         <motion.div
           style={{

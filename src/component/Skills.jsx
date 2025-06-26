@@ -300,7 +300,6 @@ export default function SkillsRadarWithDetail() {
           style={{ width: 'fit-content', flexShrink: 0, flexGrow: 0 }}
         >
           <Grid
-            id="here"
             sx={{
               width: { sm: '60vw', md: '30vw' },
               boxSizing: 'border-box',

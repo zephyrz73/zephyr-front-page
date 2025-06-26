@@ -58,13 +58,19 @@ const education = [
 
 export default function EducationSection() {
   return (
-    <Box sx={{ padding: '90px', height: '100vh', minHeight: 'fit-content' }}>
+    <Box
+      sx={{
+        padding: { md: '90px', xs: '30px', sm: '30px' },
+        height: '100vh',
+        minHeight: 'fit-content',
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h2" gutterBottom>
           Education
         </Typography>
       </motion.div>
@@ -77,26 +83,44 @@ export default function EducationSection() {
           transition={{ duration: 0.6, delay: index * 0.2 }}
           viewport={{ once: true }}
         >
-          <Box mb={4} sx={{ display: 'flex', height: '300px' }}>
+          <Box
+            mb={4}
+            sx={{
+              marginTop: '40px',
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: 'center',
+              gap: 2,
+            }}
+          >
             <Box
               sx={{
                 display: 'flex',
-                alignItems: 'center',
-                height: '300px',
-                width: '300px',
+                justifyContent: 'center',
+
+                width: { xs: '100%', sm: '200px' },
               }}
             >
               <Avatar
                 src={edu.logo}
                 alt={edu.institution}
-                sx={{ width: 'auto', height: '200px', width: '200px' }}
+                sx={{
+                  height: { xs: '120px', sm: '200px' },
+                  width: { xs: '120px', sm: '200px' },
+                }}
               />
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-              <Stack>
+            <Box sx={{ flexGrow: 1 }}>
+              <Stack
+                direction="column"
+                spacing={2}
+                sx={{
+                  paddingLeft: { xs: 0, sm: '20px' },
+                  paddingRight: { xs: 0, sm: '20px' },
+                }}
+              >
                 <Stack
                   direction="column"
-                  sx={{ paddingLeft: '50px' }}
                   spacing={2}
                   alignItems="center"
                   height="fit-content"
