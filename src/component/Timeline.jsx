@@ -232,17 +232,23 @@ export default function TimeLine(props) {
               >
                 <Typography
                   variant="body2"
-                  sx={{
-                    marginTop: '10px',
-                    writingMode: 'vertical-rl',
-                    textOrientation: 'mixed',
-                    whiteSpace: 'nowrap', // ✅ 正确写法
-                    wordBreak: 'break-word',
-                    overflowWrap: 'anywhere',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    maxHeight: '100%', // 确保有可裁剪的区域
-                  }}
+                  sx={
+                    isSmall
+                      ? {
+                          marginTop: '10px',
+                          writingMode: 'vertical-rl',
+                          textOrientation: 'mixed',
+                          whiteSpace: 'nowrap', // ✅ 正确写法
+                          wordBreak: 'break-word',
+                          overflowWrap: 'anywhere',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          maxHeight: '100%', // 确保有可裁剪的区域
+                        }
+                      : {
+                          margin: '10px',
+                        }
+                  }
                 >
                   {event.title}
                 </Typography>
