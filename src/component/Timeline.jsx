@@ -20,8 +20,8 @@ const events = [
   },
   {
     title: 'Mobility Management & Networking Lab, UCSB',
-    start: new Date('09-01-2023'),
-    end: new Date('01-01-2025'),
+    start: new Date('2023-09-01'),
+    end: new Date('2025-01-01'),
     color: '#7b9ff8',
     offset: 270,
     type: 'experience',
