@@ -6,17 +6,21 @@ import Education from '../component/Education.jsx';
 import WorkExperience from '../component/WorkExperience.jsx';
 import { useLocation } from 'react-router-dom';
 
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import BuildIcon from '@mui/icons-material/Build';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Home() {
   const [animationKey, setAnimationKey] = useState(0);
   const [sectionId, setSection] = useState(0);
   const location = useLocation();
+
+  const theme = useTheme();
+  const isSmallLandscape = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     setAnimationKey((prev) => prev + 1);
@@ -127,35 +131,43 @@ export default function Home() {
   }, [sectionId, sections.length]);
 
   return (
-    <>
+    <Box>
       <Box sx={{ marginRight: '10px' }}>
         {sections.map((s, i) => (
-          <div
+          <Box
             id={s.id}
             key={i}
             ref={s.ref}
             style={{
               minHeight: '100vh',
-              display: sectionId === i ? 'block' : 'none',
+              display: sectionId === i ? 'flex' : 'none',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             {s.component}
-          </div>
+          </Box>
         ))}
       </Box>
 
       <Box
         sx={{
           position: 'fixed',
-          top: '50%',
-          right: 20,
-          transform: 'translateY(-50%)',
+          top: isSmallLandscape ? 'unset' : '50%',
+          bottom: isSmallLandscape ? 0 : 'unset',
+          left: isSmallLandscape ? '50%' : 'unset',
+          right: isSmallLandscape ? 'unset' : 20,
+          transform: isSmallLandscape ? 'translateX(-50%)' : 'translateY(-50%)',
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: isSmallLandscape ? 'row' : 'column',
           gap: 3,
           zIndex: 1000,
           backgroundColor: 'transparent',
           alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: isSmallLandscape ? '#131313' : 'transparent',
+          padding: isSmallLandscape ? '10px' : 0,
+          width: isSmallLandscape ? '100vw' : 'auto',
         }}
       >
         {sections.map((s, i) => (
@@ -164,7 +176,7 @@ export default function Home() {
             onClick={() => setSection(i)}
             sx={{
               color: sectionId === i ? 'primary.main' : 'white',
-              fontSize: 32,
+              fontSize: isSmallLandscape ? 24 : 32,
               transition: 'transform 0.3s, color 0.3s',
               cursor: 'pointer',
               '&:hover': {
@@ -176,6 +188,6 @@ export default function Home() {
           </Box>
         ))}
       </Box>
-    </>
+    </Box>
   );
 }

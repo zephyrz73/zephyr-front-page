@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaReact,
   FaAws,
@@ -173,46 +173,55 @@ export default function SkillsRadarWithDetail() {
   const [hovered, setHovered] = useState(null);
   const theme = useTheme();
   const isXS = useMediaQuery(theme.breakpoints.only('xs'));
+  const [hoveredByClick, setHoveredByClick] = useState(false);
 
   const handleTooltipChange = (activePayload) => {
     if (activePayload && activePayload.length > 0) {
       const subject = activePayload[0].payload.subject;
       setHovered(data.find((d) => d.subject === subject));
-    } else {
-      setHovered(null);
     }
   };
+
+  useEffect(() => {
+    console.log('hovered changed:', hovered);
+  }, [hovered]);
 
   return (
     <Grid
       container
       sx={{
-        height: { lg: '100vh' },
+        height: { md: '100vh', lg: '100vh' },
         width: '100vw',
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
       <Grid
+        id="here"
         sx={{
-          width: '1200px',
+          width: '100vw',
           display: 'flex',
-          flexDirection: { lg: 'row', xs: 'column' },
+          flexDirection: { xs: 'column', md: 'row', lg: 'row' },
           alignItems: 'center',
+          height: { lg: '100vh' },
+          justifyContent: 'center',
         }}
       >
-        <Grid>
+        <Grid sx={{ flexShrink: 0 }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
             <RadarChart
-              outerRadius={isXS ? 75 : 170}
-              width={isXS ? 375 : 700}
-              height={isXS ? 375 : 600}
+              outerRadius={isXS ? 75 : 120}
+              width={isXS ? 375 : 450}
+              height={isXS ? 375 : 450}
               data={data}
-              onMouseLeave={() => setHovered(null)}
+              onMouseLeave={() => {
+                setHovered(null);
+                setHoveredByClick(false);
+              }}
             >
               <PolarGrid />
               <PolarAngleAxis
@@ -220,15 +229,15 @@ export default function SkillsRadarWithDetail() {
                 radius={isXS ? 100 : 400}
                 tick={({ payload, x, y, cx, cy }) => {
                   const angle = Math.atan2(y - cy, x - cx);
-                  const distance = isXS ? 120 : 250;
+                  const distance = isXS ? 120 : 180;
                   const newX = cx + Math.cos(angle) * distance;
                   const newY = cy + Math.sin(angle) * distance;
                   const icon = iconMap[payload.value];
 
                   return (
                     <foreignObject
-                      x={newX - 25}
-                      y={newY - 25}
+                      x={newX - 35}
+                      y={newY - 30}
                       width={80}
                       height={80}
                     >
@@ -237,6 +246,20 @@ export default function SkillsRadarWithDetail() {
                           textAlign: 'center',
                           color: '#fff',
                           fontSize: isXS ? 14 : 20,
+                          cursor: 'pointer',
+                          userSelect: 'none',
+                        }}
+                        onClick={() => {
+                          setHoveredByClick(true);
+                          setHovered(
+                            data.find((d) => d.subject === payload.value)
+                          );
+                        }}
+                        onMouseEnter={() => {
+                          setHoveredByClick(true);
+                          setHovered(
+                            data.find((d) => d.subject === payload.value)
+                          );
                         }}
                       >
                         <div style={{ lineHeight: 1 }}>{icon}</div>
@@ -274,19 +297,25 @@ export default function SkillsRadarWithDetail() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          style={{ width: 'fit-content', flexShrink: 0, flexGrow: 0 }}
         >
           <Grid
+            id="here"
             sx={{
-              width: { lg: '50%' },
+              width: { sm: '60vw', md: '30vw' },
               boxSizing: 'border-box',
-              margin: '200px',
-              marginTop: { lg: '400px' },
-              height: '50vh',
+              height: 'fit-content',
               display: 'flex',
               justifyContent: 'center',
+              padding: {
+                lg: '0px 40px 0px 40px',
+                md: '30px',
+                sm: '30px',
+                xs: '20px 30px 50px 30px',
+              },
             }}
           >
-            <Grid minWidth="300px" maxWidth="600px">
+            <Grid>
               <Typography variant="h4" gutterBottom>
                 Owned Skills : {(hovered || data[0]).subject}{' '}
                 {iconMap[(hovered || data[0]).subject]}

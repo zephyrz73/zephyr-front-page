@@ -18,6 +18,7 @@ export default function HomeMain() {
         px: { xs: 2, md: 6 },
         py: { xs: 4, md: 0 },
         gap: { xs: 4, md: 8 },
+        paddingRight: { xs: 0, md: '100px' },
       }}
     >
       <motion.div
@@ -31,9 +32,9 @@ export default function HomeMain() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            width: { xs: 300, md: 400 },
-            height: { xs: 300, md: 400 },
-            marginRight: '50px',
+            width: { xs: 200, md: 300 },
+            height: { xs: 200, md: 300 },
+            marginRight: 0,
           }}
         >
           <Avatar
@@ -72,10 +73,10 @@ export default function HomeMain() {
 
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
-            alignItems="center"
             justifyContent={{ xs: 'center', md: 'flex-start' }}
+            gap={2}
             mt={2}
+            sx={{ display: 'flex', flexWrap: 'wrap' }}
           >
             <Stack direction="row" spacing={1} alignItems="center">
               <EmailIcon fontSize="small" />
@@ -96,7 +97,12 @@ export default function HomeMain() {
               </Link>
             </Stack>
 
-            <Stack direction="row" spacing={1} alignItems="center">
+            <Stack
+              direction="row"
+              spacing={1}
+              alignItems="center"
+              minWidth="100px"
+            >
               <PhoneIcon fontSize="small" />
               <Typography variant="link">(253) 359-6692</Typography>
             </Stack>
@@ -111,7 +117,9 @@ export default function HomeMain() {
               direction="row"
               spacing={2}
               mt={3}
-              sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
+              sx={{
+                justifyContent: { xs: 'center', md: 'flex-start' },
+              }}
             >
               <Button variant="contained" component={RouterLink} to="/resume">
                 View Resume
