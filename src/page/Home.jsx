@@ -101,19 +101,19 @@ export default function Home() {
 
       let scrollTimeout = null;
 
-      if (e.type === 'wheel') {
-        const dx = Math.abs(e.deltaX);
-        const dy = Math.abs(e.deltaY);
+      // if (e.type === 'wheel') {
+      //   const dx = Math.abs(e.deltaX);
+      //   const dy = Math.abs(e.deltaY);
 
-        if (dx > dy) {
-          clearTimeout(scrollTimeout);
+      //   if (dx > dy) {
+      //     clearTimeout(scrollTimeout);
 
-          scrollTimeout = setTimeout(() => {
-            if (e.deltaX > 0) scrollNext();
-            else if (e.deltaX < 0) scrollPrev();
-          }, 1000);
-        }
-      }
+      //     scrollTimeout = setTimeout(() => {
+      //       if (e.deltaX > 0) scrollNext();
+      //       else if (e.deltaX < 0) scrollPrev();
+      //     }, 1000);
+      //   }
+      // }
 
       if (e.type === 'keydown') {
         if (['ArrowDown', 'ArrowRight'].includes(e.key)) scrollNext();
