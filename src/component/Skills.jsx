@@ -1,27 +1,20 @@
-// SkillsRadarWithDetail.jsx
 import React, { useState } from 'react';
 import {
   FaReact,
   FaAws,
   FaDatabase,
   FaJava,
-  FaCloud,
   FaLock,
   FaTools,
-  FaChartLine,
-  FaHtml5,
   FaBug,
 } from 'react-icons/fa';
 import { BiLogoSpringBoot } from 'react-icons/bi';
 import { SiApachekafka } from 'react-icons/si';
-
 import {
-  ResponsiveContainer,
   RadarChart,
   Radar,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   Tooltip,
 } from 'recharts';
 import {
@@ -33,6 +26,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const iconMap = {
   Language: <FaJava />,
@@ -56,7 +50,7 @@ const data = [
       'TypeScript',
       'SQL',
       'HTML5 / CSS',
-      ' Python',
+      'Python',
       'Ruby',
       'C / C++',
       'Dart',
@@ -129,7 +123,7 @@ const data = [
   {
     subject: 'Security',
     A: 100,
-    skills: [' JWT', 'RBAC', 'Spring Security', 'Jasypt', 'OAuth', 'SSO'],
+    skills: ['JWT', 'RBAC', 'Spring Security', 'Jasypt', 'OAuth', 'SSO'],
   },
   {
     subject: 'DevOps & Tools',
@@ -193,12 +187,7 @@ export default function SkillsRadarWithDetail() {
     <Grid
       container
       sx={{
-        height: {
-          xs: 'fit-content',
-          sm: 'fit-content',
-          md: 'fit-content',
-          lg: '100vh',
-        },
+        height: { lg: '100vh' },
         width: '100vw',
         justifyContent: 'center',
         alignItems: 'center',
@@ -207,159 +196,133 @@ export default function SkillsRadarWithDetail() {
       <Grid
         sx={{
           width: '1200px',
-          height: { xs: 'fit-content', sm: 'fit-content', md: 'fit-content' },
           display: 'flex',
-          flexDirection: {
-            xs: 'column',
-            sm: 'column',
-            md: 'column',
-            lg: 'row',
-          },
-          justifyContent: { xs: 'center', sm: 'flex-start' },
+          flexDirection: { lg: 'row', xs: 'column' },
           alignItems: 'center',
         }}
       >
         <Grid>
-          {/* <ResponsiveContainer width="90%" height="90%"> */}
-          <RadarChart
-            outerRadius={isXS ? 75 : 170}
-            width={isXS ? 375 : 700}
-            height={isXS ? 375 : 600}
-            data={data}
-            onMouseLeave={() => setHovered(null)}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
           >
-            <PolarGrid />
-            <PolarAngleAxis
-              dataKey="subject"
-              radius={isXS ? 100 : 400}
-              tick={({ payload, x, y, cx, cy }) => {
-                const angle = Math.atan2(y - cy, x - cx);
-                const distance = isXS ? 120 : 250;
-                const newX = cx + Math.cos(angle) * distance;
-                const newY = cy + Math.sin(angle) * distance;
-                const icon = iconMap[payload.value];
-                const color = '#ffffff';
+            <RadarChart
+              outerRadius={isXS ? 75 : 170}
+              width={isXS ? 375 : 700}
+              height={isXS ? 375 : 600}
+              data={data}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <PolarGrid />
+              <PolarAngleAxis
+                dataKey="subject"
+                radius={isXS ? 100 : 400}
+                tick={({ payload, x, y, cx, cy }) => {
+                  const angle = Math.atan2(y - cy, x - cx);
+                  const distance = isXS ? 120 : 250;
+                  const newX = cx + Math.cos(angle) * distance;
+                  const newY = cy + Math.sin(angle) * distance;
+                  const icon = iconMap[payload.value];
 
-                return (
-                  <foreignObject
-                    x={newX - 25}
-                    y={newY - 25}
-                    width={80}
-                    height={80}
-                  >
-                    <div
-                      style={{
-                        textAlign: 'center',
-                        color,
-                        fontSize: isXS ? 14 : 20,
-                      }}
+                  return (
+                    <foreignObject
+                      x={newX - 25}
+                      y={newY - 25}
+                      width={80}
+                      height={80}
                     >
-                      <div style={{ lineHeight: 1 }}>{icon}</div>
                       <div
                         style={{
-                          fontSize: isXS ? 12 : 14,
-                          fontWeight: isXS ? 'normal' : 'bold',
+                          textAlign: 'center',
+                          color: '#fff',
+                          fontSize: isXS ? 14 : 20,
                         }}
                       >
-                        {payload.value}
+                        <div style={{ lineHeight: 1 }}>{icon}</div>
+                        <div
+                          style={{
+                            fontSize: isXS ? 12 : 14,
+                            fontWeight: isXS ? 'normal' : 'bold',
+                          }}
+                        >
+                          {payload.value}
+                        </div>
                       </div>
-                    </div>
-                  </foreignObject>
-                );
-              }}
-            />
-
-            <Radar
-              name="Skill"
-              dataKey="A"
-              stroke="#86c2f5"
-              fill="#86c2f5"
-              fillOpacity={0.6}
-            />
-            <Tooltip
-              content={({ active, payload }) => {
-                handleTooltipChange(payload);
-                return null; // Tooltip 内容我们另渲染在右侧
-              }}
-            />
-          </RadarChart>
-          {/* </ResponsiveContainer> */}
+                    </foreignObject>
+                  );
+                }}
+              />
+              <Radar
+                name="Skill"
+                dataKey="A"
+                stroke="#86c2f5"
+                fill="#86c2f5"
+                fillOpacity={0.6}
+              />
+              <Tooltip
+                content={({ payload }) => {
+                  handleTooltipChange(payload);
+                  return null;
+                }}
+              />
+            </RadarChart>
+          </motion.div>
         </Grid>
 
-        {/* 👉 Hover 右侧展示技能组 */}
-        <Grid
-          sx={{
-            boxSizing: 'border-box',
-            width: { xs: '100%', sm: '100%', md: '100%', lg: '50%' },
-            padding: '40px',
-            height: '50vh',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Grid minWidth="300px" maxWidth="600px" minHieght="300px">
-            {hovered ? (
-              <>
-                <Typography variant="h4" gutterBottom>
-                  Owned Skills : {hovered.subject} {iconMap[hovered.subject]}
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Hover over the chart to see detailed skills that I possessed.
-                </Typography>
-                <Stack
-                  direction="row"
-                  flexWrap="wrap"
-                  justifyContent="flex-start"
-                >
-                  {hovered.skills.map((skill) => (
+          <Grid
+            sx={{
+              width: { lg: '50%' },
+              boxSizing: 'border-box',
+              margin: '200px',
+              marginTop: { lg: '400px' },
+              height: '50vh',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Grid minWidth="300px" maxWidth="600px">
+              <Typography variant="h4" gutterBottom>
+                Owned Skills : {(hovered || data[0]).subject}{' '}
+                {iconMap[(hovered || data[0]).subject]}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                gutterBottom
+              >
+                Hover over the chart to see detailed skills that I possessed.
+              </Typography>
+              <Stack
+                direction="row"
+                flexWrap="wrap"
+                justifyContent="flex-start"
+              >
+                {(hovered || data[0]).skills.map((skill, index) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + index * 0.03 }}
+                  >
                     <Box margin="1px">
                       <Chip
-                        key={skill}
                         label={skill}
                         variant="outlined"
                         sx={{ marginBottom: '10px', marginRight: '10px' }}
                       />
                     </Box>
-                  ))}
-                </Stack>
-              </>
-            ) : (
-              <>
-                <Typography variant="h4" gutterBottom>
-                  Owned Skills : {data[0].subject} {iconMap[data[0].subject]}
-                </Typography>
-
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Hover over the chart to see detailed skills that I possessed.
-                </Typography>
-                <Stack
-                  direction="row"
-                  flexWrap="wrap"
-                  justifyContent="flex-start"
-                >
-                  {data[0].skills.map((skill) => (
-                    <Box margin="1px">
-                      <Chip
-                        key={skill}
-                        label={skill}
-                        variant="outlined"
-                        sx={{ marginBottom: '10px', marginRight: '10px' }}
-                      />
-                    </Box>
-                  ))}
-                </Stack>
-              </>
-            )}
+                  </motion.div>
+                ))}
+              </Stack>
+            </Grid>
           </Grid>
-        </Grid>
+        </motion.div>
       </Grid>
     </Grid>
   );

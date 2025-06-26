@@ -18,20 +18,19 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import PROJECTS from '../data/Projects'; // 确保是数组
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { motion, AnimatePresence } from 'framer-motion';
+import PROJECTS from '../data/Projects';
 
 export default function ProjectsPage() {
   const [selected, setSelected] = useState(null);
 
   function highlightTech(text, terms) {
-    // 构造正则，按最长词优先匹配（防止 JWT 与 JUnit 冲突）
     const escaped = [...terms]
       .sort((a, b) => b.length - a.length)
       .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
     if (!escaped.length) return text;
-
     const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
 
     return text.split(regex).map((chunk, idx) =>
@@ -62,74 +61,89 @@ export default function ProjectsPage() {
         Projects and Experiences
       </Typography>
 
-      <Grid container spacing={4}>
-        {PROJECTS.map((project) => (
+      <Grid container spacing={4} justifyContent="center">
+        {PROJECTS.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={project.id}>
-            <Card
-              onClick={() =>
-                setSelected({ ...project, tech: [...project.tech] })
-              }
-              sx={{
-                cursor: 'pointer',
-                width: { md: '45vw', lg: '30vw' },
-                height: '450px',
-                maxWidth: '800px',
-                minWidth: '500px',
-              }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
             >
-              {project.thumbnail && (
-                <CardMedia
-                  component="img"
-                  width={500}
-                  height={200}
-                  image={project.thumbnail}
-                  alt={project.title}
-                  sx={{
-                    boxSizing: 'border-box',
-                    objectFit: 'cover',
-                  }}
-                />
-              )}
-              <CardContent>
-                <Typography variant="h6">{project.title}</Typography>
-                <Typography variant="subtitle2" color="text.secondary">
-                  {project.period}
-                </Typography>
-                <Typography variant="body1" sx={{ mt: 1 }}>
-                  {project.company} · {project.role} · {project.id}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  {project.description}
-                </Typography>
-                <Box
-                  sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}
-                >
-                  {project.tech.slice(0, 8).map((tag) => (
-                    <Chip key={tag} label={tag} size="small" />
-                  ))}
-                  {project.tech.length > 8 && (
-                    <Chip
-                      label={`+${project.tech.length - 8} more`}
-                      size="small"
-                      variant="outlined"
-                    />
-                  )}
-                </Box>
-              </CardContent>
-            </Card>
+              <Card
+                onClick={() =>
+                  setSelected({ ...project, tech: [...project.tech] })
+                }
+                sx={{
+                  cursor: 'pointer',
+                  width: { md: '45vw', lg: '30vw' },
+                  height: '450px',
+                  maxWidth: '800px',
+                  minWidth: '500px',
+                  transition: 'transform 0.3s',
+                }}
+              >
+                {project.thumbnail && (
+                  <CardMedia
+                    component="img"
+                    width={500}
+                    height={200}
+                    image={project.thumbnail}
+                    alt={project.title}
+                    sx={{ objectFit: 'cover' }}
+                  />
+                )}
+                <CardContent>
+                  <Typography variant="h6">{project.title}</Typography>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    {project.period}
+                  </Typography>
+                  <Typography variant="body1" sx={{ mt: 1 }}>
+                    {project.company} · {project.role}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mt: 1 }}>
+                    {project.description}
+                  </Typography>
+                  <Box
+                    sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}
+                  >
+                    {project.tech.slice(0, 8).map((tag) => (
+                      <Chip key={tag} label={tag} size="small" />
+                    ))}
+                    {project.tech.length > 8 && (
+                      <Chip
+                        label={`+${project.tech.length - 8} more`}
+                        size="small"
+                        variant="outlined"
+                      />
+                    )}
+                  </Box>
+                </CardContent>
+              </Card>
+            </motion.div>
           </Grid>
         ))}
       </Grid>
 
-      {/* Detail Dialog */}
-      <Dialog
-        open={!!selected}
-        onClose={() => setSelected(null)}
-        fullWidth
-        maxWidth="md"
-      >
+      <AnimatePresence>
         {selected && (
-          <>
+          <Dialog
+            open={!!selected}
+            onClose={() => setSelected(null)}
+            fullWidth
+            maxWidth="md"
+            PaperProps={{
+              component: motion.div,
+              initial: { opacity: 0, y: -100, scale: 0.95 },
+              animate: { opacity: 1, y: 0, scale: 1 },
+              exit: { opacity: 0, y: 100, scale: 0.9 },
+              transition: { duration: 0.4 },
+            }}
+            sx={{
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(0,0,0,0.2)',
+            }}
+          >
             <DialogTitle>{selected.title}</DialogTitle>
             <DialogContent dividers>
               <Typography
@@ -161,14 +175,11 @@ export default function ProjectsPage() {
                     disablePadding
                     sx={{ mb: 0.5 }}
                   >
-                    {/* bullet 小圆点 */}
                     <ListItemIcon sx={{ minWidth: 28, mt: 0.5 }}>
                       <FiberManualRecordIcon
                         sx={{ fontSize: 8, color: 'text.secondary' }}
                       />
                     </ListItemIcon>
-
-                    {/* 正文 + 技术词高亮 */}
                     <ListItemText
                       primary={
                         <Typography
@@ -190,12 +201,7 @@ export default function ProjectsPage() {
                     href={url}
                     target="_blank"
                     rel="noopener"
-                    sx={{
-                      display: 'block',
-                      mt: 1,
-                      width: 'fit-content',
-                      marginRight: '10px',
-                    }}
+                    sx={{ mt: 1, mr: 1 }}
                   >
                     {label}
                   </Button>
@@ -205,9 +211,9 @@ export default function ProjectsPage() {
             <DialogActions>
               <Button onClick={() => setSelected(null)}>Close</Button>
             </DialogActions>
-          </>
+          </Dialog>
         )}
-      </Dialog>
+      </AnimatePresence>
     </Box>
   );
 }

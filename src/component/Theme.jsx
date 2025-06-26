@@ -1,4 +1,3 @@
-// theme.js 或 theme.ts
 import { createTheme } from '@mui/material/styles';
 
 const darkTheme = createTheme({

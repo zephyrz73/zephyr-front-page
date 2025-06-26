@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { userState } from 'react';
 import { Typography, Box } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const events = [
   {
     title: 'University of California, Santa Barbara',
     start: new Date('2022-10-01'),
     end: new Date('2025-04-01'),
-    color: '#beb8b1',
+    color: '#69a9c5',
     type: 'education',
   },
   {
     title: 'University of Washington, Seattle',
     start: new Date('2018-10-01'),
     end: new Date('2021-07-01'),
-    color: '#bdbdbd',
+    color: '#3f75a8',
     type: 'education',
+  },
+  {
+    title: 'Mobility Management & Networking Lab, UCSB',
+    start: new Date('09-01-2023'),
+    end: new Date('01-01-2025'),
+    color: '#7b9ff8',
+    offset: 270,
+    type: 'experience',
   },
   {
     title: 'Pulumi Corporation (Seattle, WA)',
@@ -28,7 +37,7 @@ const events = [
     title: 'Aucean Technologies (Zhejiang, China)',
     start: new Date('2021-07-01'),
     end: new Date('2022-10-01'),
-    color: '#acc8d7',
+    color: '#5675aa',
     offset: 270,
     type: 'experience',
   },
@@ -57,19 +66,18 @@ const events = [
     type: 'experience',
   },
 ];
-
 const startYear = 2018;
 const endYear = 2025;
 const yearHeight = 200;
 const timelineHeight = (endYear - startYear + 1) * yearHeight;
 
-const VerticalTimeline = () => {
+export default function TimeLine() {
   return (
-    <div>
+    <Box sx={{ padding: '90px' }}>
       <Box display="flex" justifyContent="center" mb={4}>
         <Typography variant="h5">My Journey</Typography>
       </Box>
-      <div
+      <motion.div
         style={{
           position: 'relative',
           width: '100%',
@@ -77,9 +85,18 @@ const VerticalTimeline = () => {
           margin: '50px auto',
           background: '#111',
         }}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.15,
+            },
+          },
+        }}
       >
-        {/* 中线 */}
-        <div
+        <motion.div
           style={{
             position: 'absolute',
             top: 0,
@@ -89,10 +106,11 @@ const VerticalTimeline = () => {
             height: '100%',
             backgroundColor: '#aaa',
           }}
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
         />
 
-        {/* 年份刻度 */}
-        {/* 关键时间点（只显示经历的开始和结束月份） */}
         {[...new Set(events.flatMap((e) => [e.start, e.end]))].map(
           (date, idx) => {
             const top =
@@ -103,11 +121,15 @@ const VerticalTimeline = () => {
             const label = date.toLocaleString('default', {
               month: 'short',
               year: 'numeric',
-            }); // e.g. "Sep 2020"
+            });
 
             return (
-              <React.Fragment key={idx}>
-                {/* 刻度线 */}
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+              >
                 <div
                   style={{
                     position: 'absolute',
@@ -119,7 +141,6 @@ const VerticalTimeline = () => {
                     backgroundColor: '#ccc',
                   }}
                 />
-                {/* 标签 */}
                 <div
                   style={{
                     position: 'absolute',
@@ -131,12 +152,11 @@ const VerticalTimeline = () => {
                 >
                   {label}
                 </div>
-              </React.Fragment>
+              </motion.div>
             );
           }
         )}
 
-        {/* 时间块 */}
         {events.map((event, i) => {
           const yStart =
             ((event.start.getFullYear() +
@@ -154,8 +174,12 @@ const VerticalTimeline = () => {
           const isEducation = event.type === 'education';
 
           return (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              viewport={{ once: true }}
               style={{
                 position: 'absolute',
                 top: `${yStart}px`,
@@ -175,15 +199,10 @@ const VerticalTimeline = () => {
               }}
             >
               {event.title}
-            </div>
+            </motion.div>
           );
         })}
-      </div>
-      <Box display="flex" justifyContent="center" mb={4}>
-        <Typography variant="h5">My Journey</Typography>
-      </Box>
-    </div>
+      </motion.div>
+    </Box>
   );
-};
-
-export default VerticalTimeline;
+}
