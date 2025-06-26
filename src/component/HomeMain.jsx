@@ -98,7 +98,7 @@ export default function HomeMain() {
 
             <Stack direction="row" spacing={1} alignItems="center">
               <PhoneIcon fontSize="small" />
-              <Typography variant="body2">(253) 359-6692</Typography>
+              <Typography variant="link">(253) 359-6692</Typography>
             </Stack>
           </Stack>
 

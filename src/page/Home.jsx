@@ -4,6 +4,7 @@ import Skills from '../component/Skills.jsx';
 import Timeline from '../component/Timeline.jsx';
 import Education from '../component/Education.jsx';
 import WorkExperience from '../component/WorkExperience.jsx';
+import { useLocation } from 'react-router-dom';
 
 import { Box } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -15,37 +16,50 @@ import WorkIcon from '@mui/icons-material/Work';
 export default function Home() {
   const [animationKey, setAnimationKey] = useState(0);
   const [sectionId, setSection] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     setAnimationKey((prev) => prev + 1);
   }, [sectionId]);
 
+  useEffect(() => {
+    console.log('location???', location.state.sectionId);
+    if (location.state?.sectionId !== undefined) {
+      setSection(location.state.sectionId);
+    }
+  }, [location.state]);
+
   const sections = [
     {
+      id: 'about',
       ref: useRef(null),
       component: <HomeMain key={animationKey} />,
       name: 'About Me',
       icon: <HomeIcon />,
     },
     {
+      id: 'skills',
       ref: useRef(null),
       component: <Skills key={animationKey} />,
       name: 'My Skills',
       icon: <BuildIcon />,
     },
     {
+      id: 'timeline',
       ref: useRef(null),
-      component: <Timeline key={animationKey} />,
+      component: <Timeline key={animationKey} setSection={setSection} />,
       name: 'My Journey',
       icon: <TimelineIcon />,
     },
     {
+      id: 'education',
       ref: useRef(null),
       component: <Education key={animationKey} />,
       name: 'My Academic Degrees',
       icon: <SchoolIcon />,
     },
     {
+      id: 'experience',
       ref: useRef(null),
       component: <WorkExperience key={animationKey} />,
       name: 'My Work Experience',
@@ -118,6 +132,7 @@ export default function Home() {
       <Box sx={{ marginRight: '10px' }}>
         {sections.map((s, i) => (
           <div
+            id={s.id}
             key={i}
             ref={s.ref}
             style={{

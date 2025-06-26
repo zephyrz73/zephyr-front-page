@@ -18,12 +18,31 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { motion, AnimatePresence } from 'framer-motion';
 import PROJECTS from '../data/Projects';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function ProjectsPage() {
   const [selected, setSelected] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { state } = useLocation();
+  const fromSectionId =
+    location.state && location.state.sectionId ? location.state.sectionId : 0;
+  console.log('location', fromSectionId);
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    const project = PROJECTS.find((p) => p.id === hash);
+    if (project) {
+      setSelected(project);
+    }
+  }, [location]);
 
   function highlightTech(text, terms) {
     const escaped = [...terms]
@@ -57,9 +76,41 @@ export default function ProjectsPage() {
 
   return (
     <Box sx={{ px: 4, py: 6 }}>
-      <Typography variant="h3" gutterBottom>
-        Projects and Experiences
-      </Typography>
+      <Box
+        sx={{
+          mb: 2,
+          display: 'flex',
+          justifyContent: 'flex-start',
+          marginLeft: '40px',
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+          <Typography
+            variant="h3"
+            gutterBottom
+            marginBottom="30px"
+            marginRight="30px"
+          >
+            Projects and Experiences
+          </Typography>
+          <Button
+            variant="outlined"
+            startIcon={<ArrowBackIcon />}
+            onClick={() =>
+              navigate('/', { state: { sectionId: fromSectionId } })
+            }
+            sx={{
+              textTransform: 'none',
+              borderRadius: 2,
+              px: 2,
+              fontWeight: 500,
+              height: 'fit-content',
+            }}
+          >
+            Return to Home
+          </Button>
+        </Box>
+      </Box>
 
       <Grid container spacing={4} justifyContent="center">
         {PROJECTS.map((project, index) => (
@@ -209,6 +260,21 @@ export default function ProjectsPage() {
               </Box>
             </DialogContent>
             <DialogActions>
+              <Button
+                variant="outlined"
+                startIcon={<ArrowBackIcon />}
+                onClick={() =>
+                  navigate('/', { state: { sectionId: fromSectionId } })
+                }
+                sx={{
+                  textTransform: 'none',
+                  borderRadius: 2,
+                  px: 2,
+                  fontWeight: 500,
+                }}
+              >
+                Return to Home
+              </Button>
               <Button onClick={() => setSelected(null)}>Close</Button>
             </DialogActions>
           </Dialog>

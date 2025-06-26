@@ -1,6 +1,7 @@
 import React, { userState } from 'react';
 import { Typography, Box } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const events = [
   {
@@ -24,6 +25,7 @@ const events = [
     color: '#7b9ff8',
     offset: 270,
     type: 'experience',
+    projectId: 'broadband-pricing-crawler',
   },
   {
     title: 'Pulumi Corporation (Seattle, WA)',
@@ -32,6 +34,7 @@ const events = [
     color: '#747492',
     offset: 270,
     type: 'experience',
+    projectId: 'pulumi-cms',
   },
   {
     title: 'Aucean Technologies (Zhejiang, China)',
@@ -40,6 +43,7 @@ const events = [
     color: '#5675aa',
     offset: 270,
     type: 'experience',
+    projectId: 'auv-parking-vision',
   },
   {
     title: 'AppFolio (Santa Barbara, CA)',
@@ -48,6 +52,7 @@ const events = [
     color: '#4e5a65',
     offset: 270,
     type: 'experience',
+    projectId: 'renters-insurance',
   },
   {
     title: 'Violett Inc. (Seattle, WA)',
@@ -56,6 +61,7 @@ const events = [
     color: '#527698',
     offset: 80,
     type: 'experience',
+    projectId: 'air-quality-portal',
   },
   {
     title: 'Beaconfire Inc. (Remote)',
@@ -64,6 +70,7 @@ const events = [
     color: '#8ea9ad',
     offset: 80,
     type: 'experience',
+    projectId: 'forum-platform',
   },
 ];
 const startYear = 2018;
@@ -71,7 +78,8 @@ const endYear = 2025;
 const yearHeight = 200;
 const timelineHeight = (endYear - startYear + 1) * yearHeight;
 
-export default function TimeLine() {
+export default function TimeLine(props) {
+  const navigate = useNavigate();
   return (
     <Box sx={{ padding: '90px' }}>
       <Box display="flex" justifyContent="center" mb={4}>
@@ -178,6 +186,13 @@ export default function TimeLine() {
               key={i}
               initial={{ opacity: 0, y: -30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0px 4px 12px rgba(255, 255, 255, 0.2)',
+                zIndex: 5,
+                cursor: 'pointer',
+              }}
+              whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               viewport={{ once: true }}
               style={{
@@ -196,6 +211,15 @@ export default function TimeLine() {
                 boxSizing: 'border-box',
                 overflow: 'hidden',
                 textAlign: 'left',
+              }}
+              onClick={() => {
+                if (event.projectId) {
+                  navigate(`/projects#${event.projectId}`, {
+                    state: { sectionId: 2 },
+                  });
+                } else {
+                  props.setSection(3);
+                }
               }}
             >
               {event.title}

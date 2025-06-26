@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Stack, Chip, Avatar, Link } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const companies = [
   {
@@ -9,6 +10,7 @@ const companies = [
     location: 'Remote',
     period: 'Mar 2024 – Present',
     logo: 'zephyr-front-page/logos/beaconfire.png',
+    projectId: 'forum-platform',
     description:
       'Worked on full-stack Java Spring Boot and Angular microservice applications as part of a consulting delivery pipeline.',
   },
@@ -18,6 +20,7 @@ const companies = [
     location: 'Seattle, WA',
     period: 'Sep 2020 – May 2024',
     logo: 'zephyr-front-page/logos/violett.png',
+    projectId: 'air-quality-portal',
     description:
       'Built cross-platform customer portal and real-time IoT air quality visualization tools. Transitioned from university research startup (AeroSpec) to commercial pilot with full-stack AWS-hosted solution.',
     website: 'https://www.violett.io/',
@@ -28,6 +31,7 @@ const companies = [
     location: 'Santa Barbara, CA',
     period: 'Jun 2023 – Sep 2023',
     logo: 'zephyr-front-page/logos/appfolio.png',
+    projectId: 'renters-insurance',
     description:
       'Improved renter insurance conversion through dynamic React UI, A/B testing, and backend performance optimization. Achieved 30% increase in conversion rate.',
     website: 'https://www.appfolio.com/',
@@ -41,6 +45,7 @@ const companies = [
     description:
       'Conducted broadband pricing inequality research with automated web crawlers and regression modeling. Published paper at ACM SIGCOMM 2024.',
     website: 'https://moment.cs.ucsb.edu/',
+    projectId: 'broadband-pricing-crawler',
   },
   {
     name: 'Pulumi Corporation',
@@ -51,6 +56,7 @@ const companies = [
     description:
       'Contributed to open-source infrastructure-as-code ecosystem. Built custom CMS integration on AWS with GitHub authentication, published technical guides and registry samples.',
     website: 'https://www.pulumi.com/',
+    projectId: 'pulumi-cms',
   },
   {
     name: 'Aucean Technologies',
@@ -58,12 +64,14 @@ const companies = [
     location: 'Zhejiang, China',
     period: 'Jan 2022 – Apr 2022',
     logo: 'zephyr-front-page/logos/aucean.png',
+    projectId: 'auv-parking-vision',
     description:
       'Developed underwater base recognition system using traditional and ML-based computer vision techniques for Z3-Mini AUV docking in turbid lake environments.',
   },
 ];
 
 export default function CompanySection() {
+  const navigate = useNavigate();
   return (
     <Box sx={{ padding: '90px' }}>
       <motion.div
@@ -104,21 +112,24 @@ export default function CompanySection() {
                 <Typography variant="body1" sx={{ mt: 1 }}>
                   {company.description}
                 </Typography>
-                {company.website && (
-                  <Link
-                    href={company.website}
-                    target="_blank"
-                    rel="noopener"
-                    underline="hover"
-                    sx={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      mt: 1,
-                    }}
-                  >
-                    Visit Website
-                  </Link>
-                )}
+                <Link
+                  onClick={() =>
+                    navigate(`/projects#${company.projectId}`, {
+                      state: { sectionId: 4 },
+                    })
+                  }
+                  target="_blank"
+                  rel="noopener"
+                  underline="hover"
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    mt: 1,
+                    cursor: 'pointer',
+                  }}
+                >
+                  View Details
+                </Link>
               </Box>
             </Box>
           </motion.div>
