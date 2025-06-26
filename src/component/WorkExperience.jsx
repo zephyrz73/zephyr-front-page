@@ -73,7 +73,7 @@ const companies = [
 export default function CompanySection() {
   const navigate = useNavigate();
   return (
-    <Box sx={{ padding: '90px' }}>
+    <Box sx={{ padding: { md: '90px', sm: '30px', xs: '30px' } }}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -109,28 +109,35 @@ export default function CompanySection() {
                 <Typography variant="body2" color="text.secondary">
                   {company.location} · {company.period}
                 </Typography>
-                <Typography variant="body1" sx={{ mt: 1 }}>
-                  {company.description}
-                </Typography>
-                <Link
-                  onClick={() =>
-                    navigate(`/projects#${company.projectId}`, {
-                      state: { sectionId: 4 },
-                    })
-                  }
-                  target="_blank"
-                  rel="noopener"
-                  underline="hover"
-                  sx={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    mt: 1,
-                    cursor: 'pointer',
-                  }}
-                >
-                  View Details
-                </Link>
               </Box>
+            </Box>
+            <Box
+              sx={{
+                marginLeft: { sm: '0px', xs: '0px', md: '92px' },
+                marginTop: { sm: '10px', xs: '10px', md: '0px' },
+              }}
+            >
+              <Typography variant="body1" sx={{ mt: 1 }}>
+                {company.description}
+              </Typography>
+              <Link
+                onClick={() =>
+                  navigate(`/projects#${company.projectId}`, {
+                    state: { sectionId: 4 },
+                  })
+                }
+                target="_blank"
+                rel="noopener"
+                underline="hover"
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  mt: 1,
+                  cursor: 'pointer',
+                }}
+              >
+                View Details
+              </Link>
             </Box>
           </motion.div>
         ))}
