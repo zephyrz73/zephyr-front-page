@@ -9,7 +9,7 @@ const companies = [
     position: 'Java Full-Stack Contractor',
     location: 'Remote',
     period: 'Mar 2024 – Present',
-    logo: 'zephyr-front-page/logos/beaconfire.png',
+    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/beaconfire.png',
     projectId: 'forum-platform',
     description:
       'Worked on full-stack Java Spring Boot and Angular microservice applications as part of a consulting delivery pipeline.',
@@ -19,7 +19,7 @@ const companies = [
     position: 'Full-Stack Software Engineer',
     location: 'Seattle, WA',
     period: 'Sep 2020 – May 2024',
-    logo: 'zephyr-front-page/logos/violett.png',
+    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/violett.png',
     projectId: 'air-quality-portal',
     description:
       'Built cross-platform customer portal and real-time IoT air quality visualization tools. Transitioned from university research startup (AeroSpec) to commercial pilot with full-stack AWS-hosted solution.',
@@ -30,7 +30,7 @@ const companies = [
     position: 'Software Engineer Intern',
     location: 'Santa Barbara, CA',
     period: 'Jun 2023 – Sep 2023',
-    logo: 'zephyr-front-page/logos/appfolio.png',
+    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/appfolio.png',
     projectId: 'renters-insurance',
     description:
       'Improved renter insurance conversion through dynamic React UI, A/B testing, and backend performance optimization. Achieved 30% increase in conversion rate.',
@@ -41,7 +41,7 @@ const companies = [
     position: 'Graduate Researcher',
     location: 'Santa Barbara, CA',
     period: 'Sep 2023 – Present',
-    logo: 'zephyr-front-page/logos/mmnl.png',
+    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/mmnl.png',
     description:
       'Conducted broadband pricing inequality research with automated web crawlers and regression modeling. Published paper at ACM SIGCOMM 2024.',
     website: 'https://moment.cs.ucsb.edu/',
@@ -52,7 +52,7 @@ const companies = [
     position: 'Software Engineer Intern',
     location: 'Seattle, WA',
     period: 'Feb 2024 – Jun 2024',
-    logo: 'zephyr-front-page/logos/pulumi.png',
+    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/pulumi.png',
     description:
       'Contributed to open-source infrastructure-as-code ecosystem. Built custom CMS integration on AWS with GitHub authentication, published technical guides and registry samples.',
     website: 'https://www.pulumi.com/',
@@ -63,7 +63,7 @@ const companies = [
     position: 'Software Engineer',
     location: 'Zhejiang, China',
     period: 'Jan 2022 – Apr 2022',
-    logo: 'zephyr-front-page/logos/aucean.png',
+    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/aucean.png',
     projectId: 'auv-parking-vision',
     description:
       'Developed underwater base recognition system using traditional and ML-based computer vision techniques for Z3-Mini AUV docking in turbid lake environments.',

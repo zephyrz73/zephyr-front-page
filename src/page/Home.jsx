@@ -23,7 +23,6 @@ export default function Home() {
   }, [sectionId]);
 
   useEffect(() => {
-    console.log('location???', location.state.sectionId);
     if (location.state?.sectionId !== undefined) {
       setSection(location.state.sectionId);
     }

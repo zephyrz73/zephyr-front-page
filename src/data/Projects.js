@@ -277,7 +277,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'contrast shift',
       'Gaussian blur',
     ],
-    thumbnail: '/zephyr-front-page/aucean-tech.jpg',
+    thumbnail: 'https://zephyrz73.github.io/zephyr-front-page/aucean-tech.jpg',
     links: {},
     description:
       'Engineered a optical recognition system for Z3-Mini AUV to identify underwater parking base centers in turbid, reflective lake environments, using YOLO object detection and fallback OpenCV pipelines.',
@@ -367,7 +367,8 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Geolocation',
       'Sensor Fusion',
     ],
-    thumbnail: '/zephyr-front-page/realestate-ar.jpg',
+    thumbnail:
+      'https://zephyrz73.github.io/zephyr-front-page/realestate-ar.jpg',
     links: {
       repo: 'https://github.com/zephyrz73/RealEstateAR',
       demo: 'https://drive.google.com/drive/folders/1vhKniYmU3hcNCgaZDUMzrb8jI0SCY_Ax?dmr=1&ec=wgc-drive-globalnav-goto',
@@ -398,7 +399,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Canvas',
       'Web APIs',
     ],
-    thumbnail: '/zephyr-front-page/web-lab.jpg',
+    thumbnail: 'https://zephyrz73.github.io/zephyr-front-page/web-lab.jpg',
     links: {
       repo: 'https://github.com/zephyrz73/WebDevelopmentProjects',
     },
@@ -426,7 +427,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Kongregate',
       'Animation',
     ],
-    thumbnail: '/zephyr-front-page/balloon.jpg',
+    thumbnail: 'https://zephyrz73.github.io/zephyr-front-page/balloon.jpg',
     links: {
       repo: 'https://github.com/zephyrz73/balloonEscape',
       game: 'https://www.kongregate.com/games/ballonitup/balloon-it-up',

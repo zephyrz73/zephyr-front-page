@@ -34,7 +34,6 @@ export default function ProjectsPage() {
   const { state } = useLocation();
   const fromSectionId =
     location.state && location.state.sectionId ? location.state.sectionId : 0;
-  console.log('location', fromSectionId);
 
   useEffect(() => {
     const hash = location.hash.replace('#', '');

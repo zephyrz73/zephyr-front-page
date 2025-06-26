@@ -37,7 +37,7 @@ export default function HomeMain() {
           }}
         >
           <Avatar
-            src={`zephyr-front-page/avatar.JPG`}
+            src={`https://zephyrz73.github.io/zephyr-front-page/avatar.JPG`}
             alt="Zephyr Zhou"
             sx={{
               width: '100%',
