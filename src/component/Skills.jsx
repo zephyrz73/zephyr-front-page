@@ -194,6 +194,7 @@ export default function SkillsRadarWithDetail() {
         width: '100vw',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingBottom: { xs: '80px', md: '0px' },
       }}
     >
       <Grid

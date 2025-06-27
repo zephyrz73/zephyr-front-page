@@ -1,17 +1,27 @@
 import { Box, Typography, Button } from '@mui/material';
+import { useEffect } from 'react';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 
 export default function ResumePage() {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <Box sx={{ p: 4 }}>
-      <Box sx={{ display: 'flex', gap: 4, alignItems: 'baseline' }}>
-        <Typography variant="h3" gutterBottom>
-          Resume
-        </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          height: 'fit-content',
+          marginBottom: '20px',
+        }}
+      >
+        <Typography variant="h3">Resume</Typography>
         <Button
           variant="outlined"
           startIcon={<ArrowBackIcon />}
@@ -21,7 +31,6 @@ export default function ResumePage() {
             borderRadius: 2,
             px: 2,
             fontWeight: 500,
-            marginBottom: '30px',
             height: 'fit-content',
           }}
         >

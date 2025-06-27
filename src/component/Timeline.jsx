@@ -85,7 +85,7 @@ export default function TimeLine(props) {
 
   const navigate = useNavigate();
   return (
-    <Box sx={{ width: '100vw' }}>
+    <Box sx={{ width: '100vw', paddingBottom: { xs: '80px', md: '0px' } }}>
       <Box sx={{ paddingTop: '90px' }}>
         <Box display="flex" justifyContent="center" mb={4}>
           <Typography variant="h2">My Journey</Typography>

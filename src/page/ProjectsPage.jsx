@@ -43,6 +43,10 @@ export default function ProjectsPage() {
     }
   }, [location]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // 或 behavior: 'auto'
+  }, []);
+
   function highlightTech(text, terms) {
     const escaped = [...terms]
       .sort((a, b) => b.length - a.length)
@@ -74,24 +78,32 @@ export default function ProjectsPage() {
   }
 
   return (
-    <Box sx={{ px: 4, py: 6 }}>
+    <Box
+      sx={{
+        padding: { lg: '90px', md: '60px', sm: '30px', xs: '30px' },
+        boxSizing: 'border-box',
+        width: '100vw',
+        height: 'fit-content',
+      }}
+    >
       <Box
         sx={{
           mb: 2,
           display: 'flex',
           justifyContent: 'flex-start',
-          marginLeft: '40px',
+          width: '100%',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-          <Typography
-            variant="h3"
-            gutterBottom
-            marginBottom="30px"
-            marginRight="30px"
-          >
-            Projects and Experiences
-          </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            marginBottom: '10px',
+            width: '100%',
+          }}
+        >
+          <Typography variant="h3">Projects & Experiences</Typography>
           <Button
             variant="outlined"
             startIcon={<ArrowBackIcon />}
@@ -104,6 +116,10 @@ export default function ProjectsPage() {
               px: 2,
               fontWeight: 500,
               height: 'fit-content',
+              width: 'fit-content',
+              flexShrink: 0,
+              flexGrow: 0,
+              textWrap: 'nowrap',
             }}
           >
             Return to Home
@@ -111,14 +127,22 @@ export default function ProjectsPage() {
         </Box>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center">
+      <Grid
+        container
+        spacing={4}
+        justifyContent="left"
+        display="flex"
+        flexDirection="row"
+        alignItems="stretch"
+      >
         {PROJECTS.map((project, index) => (
-          <Grid item xs={12} sm={6} md={4} key={project.id}>
+          <Grid item key={project.id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
+              style={{ height: '100%', width: '100%' }}
             >
               <Card
                 onClick={() =>
@@ -126,21 +150,20 @@ export default function ProjectsPage() {
                 }
                 sx={{
                   cursor: 'pointer',
-                  width: { md: '45vw', lg: '30vw' },
-                  height: '450px',
-                  maxWidth: '800px',
-                  minWidth: '500px',
                   transition: 'transform 0.3s',
+                  height: '100%',
                 }}
               >
                 {project.thumbnail && (
                   <CardMedia
                     component="img"
-                    width={500}
-                    height={200}
+                    sx={{
+                      width: { xs: '100%' },
+                      height: 200,
+                      objectFit: 'cover',
+                    }}
                     image={project.thumbnail}
                     alt={project.title}
-                    sx={{ objectFit: 'cover' }}
                   />
                 )}
                 <CardContent>

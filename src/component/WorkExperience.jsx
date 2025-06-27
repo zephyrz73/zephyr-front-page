@@ -73,7 +73,12 @@ const companies = [
 export default function CompanySection() {
   const navigate = useNavigate();
   return (
-    <Box sx={{ padding: { md: '90px', sm: '30px', xs: '30px' } }}>
+    <Box
+      sx={{
+        padding: { md: '90px', sm: '30px', xs: '30px' },
+        paddingBottom: { xs: '80px', md: '0px' },
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
