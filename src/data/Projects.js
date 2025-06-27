@@ -37,7 +37,7 @@ const PROJECTS = [
       'Spring AOP',
       'microservices',
     ],
-    thumbnail: '/zephyr-front-page/forum.png',
+    thumbnail: '/forum.png',
     links: {
       'Source Code': 'https://github.com/zephyrz73/demo-b',
     },
@@ -92,7 +92,7 @@ structured persistence using MySQL and MongoDB Atlas with isolated schemas`,
       'CI/CD',
       'AWS',
     ],
-    thumbnail: '/zephyr-front-page/air-quality.png',
+    thumbnail: '/air-quality.png',
     links: {
       'Company Website': 'https://www.violettuv.com/',
       Dashboard: 'https://www.dashboard.violett.com/',
@@ -136,7 +136,7 @@ structured persistence using MySQL and MongoDB Atlas with isolated schemas`,
       'UI/UX',
       'conversion rate',
     ],
-    thumbnail: '/zephyr-front-page/appfolio.jpg',
+    thumbnail: '/appfolio.jpg',
     links: {
       portal:
         'https://passport.appf.io/sign_in?idp_type=tportal&vhostless=true',
@@ -186,7 +186,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Markdown',
       'static site',
     ],
-    thumbnail: '/zephyr-front-page/pulumi.jpg',
+    thumbnail: '/pulumi.jpg',
     links: {
       'Netlify CMS on AWS with Pulumi':
         'https://www.pulumi.com/blog/deploying-netlify-cms-on-aws/',
@@ -238,7 +238,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'layout segmentation',
       'brightness normalization',
     ],
-    thumbnail: '/zephyr-front-page/ucsb-mmnl.jpg',
+    thumbnail: '/ucsb-mmnl.jpg',
     links: {
       paper: 'https://dl.acm.org/doi/10.1145/3651890.3672272',
     },
@@ -277,7 +277,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'contrast shift',
       'Gaussian blur',
     ],
-    thumbnail: 'https://zephyrz73.github.io/zephyr-front-page/aucean-tech.jpg',
+    thumbnail: 'https://zephyrz73.github.io/aucean-tech.jpg',
     links: {},
     description:
       'Engineered a optical recognition system for Z3-Mini AUV to identify underwater parking base centers in turbid, reflective lake environments, using YOLO object detection and fallback OpenCV pipelines.',
@@ -367,8 +367,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Geolocation',
       'Sensor Fusion',
     ],
-    thumbnail:
-      'https://zephyrz73.github.io/zephyr-front-page/realestate-ar.jpg',
+    thumbnail: 'https://zephyrz73.github.io/realestate-ar.jpg',
     links: {
       repo: 'https://github.com/zephyrz73/RealEstateAR',
       demo: 'https://drive.google.com/drive/folders/1vhKniYmU3hcNCgaZDUMzrb8jI0SCY_Ax?dmr=1&ec=wgc-drive-globalnav-goto',
@@ -399,7 +398,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Canvas',
       'Web APIs',
     ],
-    thumbnail: 'https://zephyrz73.github.io/zephyr-front-page/web-lab.jpg',
+    thumbnail: 'https://zephyrz73.github.io/web-lab.jpg',
     links: {
       repo: 'https://github.com/zephyrz73/WebDevelopmentProjects',
     },
@@ -427,7 +426,7 @@ widget in React and TypeScript with guidance of Figma UX design and the Appfolio
       'Kongregate',
       'Animation',
     ],
-    thumbnail: 'https://zephyrz73.github.io/zephyr-front-page/balloon.jpg',
+    thumbnail: 'https://zephyrz73.github.io/balloon.jpg',
     links: {
       repo: 'https://github.com/zephyrz73/balloonEscape',
       game: 'https://www.kongregate.com/games/ballonitup/balloon-it-up',

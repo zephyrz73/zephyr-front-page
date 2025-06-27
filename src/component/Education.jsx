@@ -25,7 +25,7 @@ const education = [
     department: 'Department of Computer Science',
     location: 'Santa Barbara, CA, USA',
     period: 'Sep 2022 – March 2025',
-    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/ucsb.png',
+    logo: 'https://zephyrz73.github.io/logos/ucsb.png',
     highlights: [
       'Graduate Researcher, MOMENT Lab — mobile & rural networking research.',
       'Co-author, ACM SIGCOMM 2024 paper “The Efficacy of the Connect America Fund in Addressing US Internet Access Inequities.”',
@@ -44,7 +44,7 @@ const education = [
     department: 'Paul G. Allen School of Computer Science & Engineering',
     location: 'Seattle, WA, USA',
     period: 'Sep 2018 – Jun 2021',
-    logo: 'https://zephyrz73.github.io/zephyr-front-page/logos/uw.png',
+    logo: 'https://zephyrz73.github.io/logos/uw.png',
     honors: ['Dean’s List (Sep 2020 – Jun 2021)'],
     highlights: [
       'Research Assistant, SEAL Lab; founded AeroSpec sub-group to prototype airborne-particulate sensor networks.',

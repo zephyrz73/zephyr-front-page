@@ -38,7 +38,7 @@ export default function ResumePage() {
         </Button>
       </Box>
       <iframe
-        src="https://zephyrz73.github.io/zephyr-front-page/resume.pdf"
+        src="https://zephyrz73.github.io/resume.pdf"
         width="100%"
         height="800px"
         style={{ border: 'none' }}

@@ -7,6 +7,7 @@ import {
   FaLock,
   FaTools,
   FaBug,
+  FaMobile,
 } from 'react-icons/fa';
 import { BiLogoSpringBoot } from 'react-icons/bi';
 import { SiApachekafka } from 'react-icons/si';
@@ -38,6 +39,7 @@ const iconMap = {
   Security: <FaLock />,
   'DevOps & Tools': <FaTools />,
   'Testing & Monitoring': <FaBug />,
+  Mobile: <FaMobile />,
 };
 
 const data = [
@@ -99,6 +101,7 @@ const data = [
       'MongoDB Atlas',
       'Amazon DynamoDB',
       'Oracle',
+      'GraphQL',
     ],
   },
   {
@@ -165,6 +168,20 @@ const data = [
       'ELK Stack',
       'Prometheus',
       'Grafana',
+    ],
+  },
+  {
+    subject: 'Mobile',
+    A: 100,
+    skills: [
+      'Dart',
+      'Flutter',
+      'SyncFusion',
+      'Swift',
+      'Swift UI',
+      'UI Kit',
+      'Android Studio',
+      'XCode',
     ],
   },
 ];
